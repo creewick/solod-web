@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Тех.задание курс Веб и DHTML</title>
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <input class="hidden trigger-pay" type="radio" name="action" id="pay" checked>
+    <input class="hidden trigger-request" type="radio" name="action" id="request">
+    <header class="header white shadow">
+      <h2>контур.экстерн</h2>
+    </header>
+    <main class="page">
+      <h1 class="page-name">Управление платежами</h1>
+      <div class="box white shadow top-line">
+        <div class="client-info secondary">
+          <div class="column-1">
+            <h2 class="company-name">ИП Иванов Иван Иванович</h2>
+            <div class="contacts margin">
+              <p class="contact phone">+78005553535</p>
+              <a class="contact site" href="#">www.ivan.ivanov.ru</a>
+              <a class="contact email" href="#">i.ivanov@kontur.ru</a>
+            </div>
+            <div class="info margin">
+              <a href="#">Информация о компании</a>
+            </div>
+            <div class="requisites">
+              <input class="button white-button" type="button" value="Показать реквизиты">
+            </div>
+          </div>
+          <img class="user-icon" src="img/user.svg" title="UserIcon" alt="UserIcon">
+        </div>
+        <div class="actions secondary bottom-shadow">
+          <label class="action-name action-pay" for="pay"><h1>Заплатить</h1></label>
+          <label class="action-name action-request" for="request"><h1>Запросить платёж</h1></label>
+        </div>
+        <div class="action request">
+          <p>Создайте платёжку, а ИП Иванов Иван Иванович подпишет её у себя в интернет-банке</p>
+          <form class="form">
+            <div class="margin">
+              <label>
+                <span class="form-label">ИНН получателя</span>
+                <input class="form-input" type="text" placeholder="ИНН или название получателя">
+              </label>
+            </div>
+            <div class="margin">
+              <label>
+                <span class="form-label">БИК</span>
+                <input class="form-input" type="text">
+              </label>
+            </div>
+            <div class="margin">
+              <label>
+                <span class="form-label">Номер счёта</span>
+                <input class="form-input" type="text">
+              </label>
+            </div>
+            <div class="margin">
+              <label>
+                <span class="form-label">Назначение платежа</span>
+                <input class="form-input" type="text">
+              </label>
+            </div>
+            <div class="margin">
+              <label>
+                <span class="form-label">Сумма платежа</span>
+                <input class="form-input" type="text">
+              </label>
+            </div>
+            <div class="margin">
+              <label>
+                <span class="form-label">Номер телефона</span>
+                <input class="form-input" type="tel">
+              </label>
+            </div>
+            <a class="capture" href="#">
+              Оставляя номер телефона, вы соглашаетесь на обработку персональных данных
+            </a>
+            <div class="margin">
+              <label>
+                <span class="form-label">Электронная почта</span>
+                <input class="form-input" type="text">
+              </label>
+            </div>
+            <input class="button accent-button" type="button" value="Запросить платёж">
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

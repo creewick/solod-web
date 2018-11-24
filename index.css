@@ -1,0 +1,201 @@
+body {
+    margin: 0;
+    font: 16px 'Segoe UI';
+    background-color: #e5e5e5;
+}
+
+h1 {
+    font: 20px 'Segoe UI';
+    font-weight: 600;
+    margin: 0;
+}
+
+h2 {
+    font: 32px 'Segoe UI Semilight';
+    margin: 0;
+}
+
+p, a {
+    font: 18px 'Segoe UI';
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #D97E00;
+}
+
+.hidden {
+    display: none;
+}
+
+.header {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+
+    padding: 0 30px;
+    color: #F69C00;
+    width: 100%;
+    height: 48px;
+}
+
+.page {
+    padding-top: 48px;
+}
+
+.white {
+    background-color: #fff;
+}
+
+.shadow {
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.25);
+}
+
+.bottom-shadow {
+    box-shadow: 0 5px 3px -3px rgba(0,0,0,.25);
+}
+
+.box {
+    margin: 0 auto 30px;
+    width: calc(100% - 60px);
+    max-width: 900px;
+}
+
+.client-info {
+    display: grid;
+    grid-template-columns: 1fr auto;
+
+    padding: 30px;
+}
+
+.user-icon {
+    width: 200px;
+    margin-left: 30px;
+}
+
+.page-name {
+    margin: auto;
+    width: calc(100% - 60px);
+    max-width: 900px;
+    padding: 20px 30px;
+}
+
+.secondary {
+    background-color: #f2f2f2;
+}
+
+.top-line {
+    border-top: 5px solid #F69C00;
+}
+
+.contacts {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contact {
+    margin-right: 30px;
+}
+
+.margin {
+    margin: 15px 0;
+}
+
+.button {
+    height: 32px;
+    margin-top: 30px;
+    padding: 0 15px;
+    font: 14px 'Segoe UI';
+    border: none;
+    border-radius: 1px;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, .15), 0 0 0 1px rgba(0, 0, 0, .15);
+}
+
+.white-button {
+    background-image: linear-gradient(#fff, #ebebeb);
+}
+
+.accent-button {
+    background-image: linear-gradient(#F69C00, #D97E00);
+    color: #fff;
+}
+
+.button:hover {
+    filter: brightness(90%);
+}
+
+.button:hover:active {
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, .15),
+                0 0 0 1px rgba(0, 0, 0, .15),
+          inset 0 5px 10px -5px rgba(0,0,0, .5);
+}
+
+.actions {
+    display: flex;
+    padding: 30px 30px 0 30px;
+}
+
+.action-name {
+    margin-right: 30px;
+    padding-bottom: 10px;
+}
+
+.action-name:hover {
+    color: #D97E00;
+    cursor: pointer;
+}
+
+.trigger-pay:checked ~ .page .action-pay,
+.trigger-request:checked ~ .page .action-request {
+    border-bottom: 3px solid #F69C00;
+    color: #D97E00;
+    cursor: default;
+}
+
+.trigger-pay:checked ~ .page .payment,
+.trigger-request:checked ~ .page .request {
+    display: block;
+}
+
+.action {
+    display: none;
+    padding: 30px;
+}
+
+.form {
+    margin-top: 60px;
+    margin-left: auto;
+}
+
+.form-label {
+    display: inline-block;
+    width: 12em;
+}
+
+.form-input {
+    margin: 1px;
+    padding: 6px 9px;
+
+    height: 20px;
+    width: 20em;
+
+    font: 16px 'Segoe UI Semilight';
+
+    border: 1px solid #e5e5e5;
+    border-radius: 1px;
+    box-shadow: inset 0 1px 4px -2px rgba(0,0,0,.25);
+}
+
+.form-input::placeholder {
+    color: #999;
+}
+
+.form-input:focus {
+    margin: 0;
+    border: 2px solid #F69C00;
+}
+
+.capture {
+    font-size: 14px;
+}
