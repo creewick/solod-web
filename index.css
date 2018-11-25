@@ -298,4 +298,12 @@ body {
     .item {
         width: calc(100% - 30px);
     }
+
+    .box__client-info {
+        flex-direction: column;
+    }
+
+    .box__client-info__user-icon {
+        margin: 0 auto;
+    }
 }
