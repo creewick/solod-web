@@ -1,4 +1,4 @@
-body {
+﻿body {
     margin: 0;
     font: 18px 'Segoe UI';
     background-color: #e5e5e5;
@@ -294,7 +294,6 @@ body {
         display: block;
     }
 
-    
     .item {
         width: calc(100% - 30px);
     }
