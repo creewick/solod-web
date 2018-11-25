@@ -294,7 +294,6 @@ body {
         display: block;
     }
 
-    
     .item {
         width: calc(100% - 30px);
     }
