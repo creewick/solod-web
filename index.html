@@ -7,199 +7,206 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <input class="hidden trigger-pay" type="radio" name="action" id="pay" checked>
-    <input class="hidden trigger-request" type="radio" name="action" id="request">
-    <header class="header white shadow">
-      <h2>контур.экстерн</h2>
+    <header class="header box">
+      <h2 class="heading">контур.экстерн</h2>
     </header>
     <main class="page">
-      <h1 class="page-name">Управление платежами</h1>
-      <div class="box white shadow top-line">
-        <div class="client-info columns-2 secondary">
-          <div class="column-1">
-            <h2 class="company-name">ИП Иванов Иван Иванович</h2>
-            <div class="contacts margin">
-              <p class="contact phone">+78005553535</p>
-              <a class="contact site" href="#">www.ivan.ivanov.ru</a>
-              <a class="contact email" href="#">i.ivanov@kontur.ru</a>
-            </div>
-            <div class="info margin">
-              <a href="#">Информация о компании</a>
-            </div>
-            <div class="requisites">
-              <input class="button white-button" type="button" value="Показать реквизиты">
-            </div>
-          </div>
-          <img class="user-icon" src="img/user.svg" title="UserIcon" alt="UserIcon">
-        </div>
-        <div class="menu secondary bottom-shadow">
-          <div class="actions">
-            <label class="action-name action-pay" for="pay"><h1>Заплатить</h1></label>
-            <label class="action-name action-request" for="request"><h1>Запросить платёж</h1></label>
-          </div>
-        </div>
-        <div class="action payment">
-          <input class="hidden trigger-payment-any" type="radio" name="payment" id="any" checked>
-          <input class="hidden trigger-payment-own" type="radio" name="payment" id="own">
-          <div class="actions actions-inline">
-            <label class="action-name payment-any menu-small" for="any"><h1>С карты любого банка</h1></label>
-            <label class="action-name payment-own menu-small" for="own"><h1>Из своего интернет-банка</h1></label>
-          </div>
-          <div class="any">
-            <form class="columns-2">
-              <div class="card shadow">
-                <input class="form-input input100" type="text" placeholder="Номер карты">
-                <input class="form-input em3" type="text" placeholder="ММ/ГГ">
-                <input class="form-input em3" type="text" placeholder="CVC">
+      <div class="box__block">
+        <span class="title">Управление платежами</span>
+      </div>
+      <div class="box page__top-line">
+        <input class="trigger trigger__action-pay" type="radio" name="action" id="pay" checked>
+        <input class="trigger trigger__action-request" type="radio" name="action" id="request">
+        <div class="box__container box__first-container bg-gray">
+          <div class="box__client-info">
+            <div class="box__client-info__contacts">
+              <h2 class="heading">ИП Иванов Иван Иванович</h2>
+              <div class="contacts__line box__block">
+                <p class="contact">+78005553535</p>
+                <a class="contact link" href="#">www.ivan.ivanov.ru</a>
+                <a class="contact link" href="#">i.ivanov@kontur.ru</a>
               </div>
-              <div class="card-fields">
-                <div class="margin">
-                  <label>
-                    <div class="em12">Сумма платежа</div>
-                    <input class="form-input em9" type="text">
-                  </label>
-                </div>
-                <div class="margin">
-                  <label>
-                    <div class="em12">Комментарий</div>
-                    <input class="form-input input100" type="text" placeholder="До 150 символов">
-                  </label>
-                </div>
-                <div class="margin">
-                  <label>
-                    <div class="em12">Электронная почта</div>
-                    <input class="form-input input100" type="text" placeholder="Для квитанций об уплате">
-                  </label>
-                </div>
-                <div class="margin">
-                  <input class="button accent-button" type="button" value="Заплатить">
-                </div>
+              <div class="box__client-info__info">
+                <a class="link" href="#">Информация о компании</a>
+              </div>
+              <div class="box__client-info__requisites box__block">
+                <input class="button white-button" type="button" value="Показать реквизиты">
+              </div>
+            </div>
+            <img class="box__client-info__user-icon" src="img/user.svg" title="UserIcon" alt="UserIcon">
+          </div>
+          <div class="box__bottom-tabs">
+            <label class="action-pay box__tab" for="pay">
+              <span class="title">Заплатить</span>
+            </label>
+            <label class="action-request box__tab" for="request">
+              <span class="title">Запросить&nbsp;платёж</span>
+            </label>
+          </div>
+        </div>
+        <input class="trigger trigger__nds-18" type="radio" name="nds" id="nds-18">
+        <input class="trigger trigger__nds-10" type="radio" name="nds" id="nds-10">
+        <input class="trigger trigger__nds-0" type="radio" name="nds" id="nds-0" checked>
+        <div class="box__container box__action-pay">
+          <input class="trigger trigger__payment-any" type="radio" name="payment" id="any" checked>
+          <input class="trigger trigger__payment-own" type="radio" name="payment" id="own">
+          <div class="box__tabs">
+            <label class="payment-any box__tab" for="any">
+              <span class="title">С&nbsp;карты любого банка</span>
+            </label>
+            <label class="payment-own box__tab" for="own">
+              <span class="title">Из&nbsp;своего интернет&#8209;банка</span>
+            </label>
+          </div>
+          <div class="box__payment-any">
+            <form class="box__card-form box__block">
+              <div class="box__form__card">
+                <input class="input-text" type="text" placeholder="Номер карты">
+                <input class="input-text input-date" type="text" placeholder="ММ/ГГ">
+                <input class="input-text input-code" type="password" placeholder="CVC">
+              </div>
+              <div class="box__form__fields">
+                <label class="form__field">
+                  <span class="card-form__field__text">Сумма платежа</span>
+                  <input class="input-text input-sum" type="text">
+                  <span>руб.</span>
+                </label>
+                <label class="form__field">
+                  <span class="card-form__field__text">Комментарий</span>
+                  <input class="input-text card-form__input-comment" type="text" placeholder="До 150 символов">
+                </label>
+                <label class="form__field">
+                  <span class="card-form__field__text">Электронная почта</span>
+                  <input class="input-text card-form__input-email" type="text" placeholder="Для квитанций об уплате">
+                </label>
+                <input class="button accent-button" type="button" value="Заплатить">
               </div>
             </form>
           </div>
-          <div class="own">
-            <p>Сформируйте платёжку и загрузите сё в свой банк для подписи</p>
-            <form class="form">
-              <div class="fields">
-                <div class="margin">
-                  <label>
-                    <span class="form-label em12">ИНН плательщика</span>
-                    <input class="form-input" type="text" placeholder="ИНН или название плательщика">
-                  </label>
-                </div>
-                <div class="margin">
-                  <label>
-                    <span class="form-label em12">БИК</span>
-                    <input class="form-input" type="text">
-                  </label>
-                </div>
-                <div class="margin">
-                  <label>
-                    <span class="form-label em12">Номер счёта</span>
-                    <input class="form-input" type="text">
-                  </label>
-                </div>
-                <div class="margin">
-                  <label>
-                    <span class="form-label em12">Назначение платежа</span>
-                    <input class="form-input" type="text">
-                  </label>
-                </div>
-                <div class="margin">
-                    <span class="form-label em12">НДС</span>
-                    <div class="switch">
-                      <input class="hidden nds18" type="radio" name="dns-own" id="nds18-own">
-                      <input class="hidden nds10" type="radio" name="dns-own" id="nds10-own">
-                      <input class="hidden nds0" type="radio" name="dns-own" id="nds0-own" checked>
-                      <label for="nds18-own" class="button white-button nds18-button">НДС 18%</label>
-                      <label for="nds10-own" class="button white-button nds10-button">НДС 10%</label>
-                      <label for="nds0-own" class="button white-button nds0-button">Без НДС</label>
-                    </div>
-                </div>
-                <div class="margin">
-                  <label>
-                    <span class="form-label em12">Сумма платежа</span>
-                    <input class="form-input em9" type="text">
-                  </label>
-                </div>
+          <div class="box__payment-own">
+            <p>Сформируйте платёжку и загрузите её в свой банк для подписи</p>
+            <form class="box__form">
+              <div class="box__form__fields">
+                <label class="form__field">
+                  <span class="form__field__text">ИНН плательщика</span>
+                  <input class="input-text input-inn" type="text" placeholder="ИНН или название плательщика">
+                </label>
+                <label class="form__field">
+                  <span class="form__field__text">БИК</span>
+                  <input class="input-text input-bik" type="text">
+                </label>
+                <label class="form__field">
+                  <span class="form__field__text">Номер счёта</span>
+                  <input class="input-text input-account" type="text">
+                </label>
+                <label class="form__field">
+                  <span class="form__field__text">Назначение платежа</span>
+                  <input class="input-text input-purpose" type="text">
+                </label>
+                <span class="form__field">
+                  <span class="form__field__text">НДС</span>
+                  <span class="switch">
+                    <label for="nds-18" class="button white-button nds-18">НДС 18%</label>
+                    <label for="nds-10" class="button white-button nds-10">НДС 10%</label>
+                    <label for="nds-0" class="button white-button nds-0">Без НДС</label>
+                  </span>
+                </span>
+                <label class="form__field">
+                  <span class="form__field__text">Сумма платежа</span>
+                  <input class="input-text input-sum" type="text">
+                  <span>руб.</span>
+                </label>
               </div>
-              <div class="margin">
+              <div class="box__block">
                 <input class="button accent-button" type="button" value="Получить файл для интернет-банка">
                 <input class="button white-button" type="button" value="Очистить форму">
               </div>
             </form>
           </div>
         </div>
-        <div class="action request">
+        <div class="box__container box__action-request">
           <p>Создайте платёжку, а ИП Иванов Иван Иванович подпишет её у себя в интернет-банке</p>
-          <form class="form">
-            <div class="fields">
-              <div class="margin">
-                <label>
-                  <span class="form-label em12">ИНН получателя</span>
-                  <input class="form-input" type="text" placeholder="ИНН или название получателя">
-                </label>
-              </div>
-              <div class="margin">
-                <label>
-                  <span class="form-label em12">БИК</span>
-                  <input class="form-input" type="text">
-                </label>
-              </div>
-              <div class="margin">
-                <label>
-                  <span class="form-label em12">Номер счёта</span>
-                  <input class="form-input" type="text">
-                </label>
-              </div>
-              <div class="margin">
-                <label>
-                  <span class="form-label em12">Назначение платежа</span>
-                  <input class="form-input" type="text">
-                </label>
-              </div>
-              <div class="margin">
-                  <span class="form-label em12">НДС</span>
-                  <div class="switch">
-                    <input class="hidden nds18" type="radio" name="dns" id="nds18">
-                    <input class="hidden nds10" type="radio" name="dns" id="nds10">
-                    <input class="hidden nds0" type="radio" name="dns" id="nds0" checked>
-                    <label for="nds18" class="button white-button nds18-button">НДС 18%</label>
-                    <label for="nds10" class="button white-button nds10-button">НДС 10%</label>
-                    <label for="nds0" class="button white-button nds0-button">Без НДС</label>
-                  </div>
-              </div>
-              <div class="margin">
-                <label>
-                  <span class="form-label em12">Сумма платежа</span>
-                  <input class="form-input em9" type="text">
-                </label>
-              </div>
-              <div class="margin">
-                <label>
-                  <span class="form-label em12">Номер телефона</span>
-                  <input class="form-input em9" type="tel" placeholder="+7 (000) 000-00-00">
-                </label>
-              </div>
+          <form class="box__form">
+            <div class="box__form__fields">
+              <label class="form__field">
+                <span class="form__field__text">ИНН получателя</span>
+                <input class="input-text input-inn" type="text" placeholder="ИНН или название получателя">
+              </label>
+              <label class="form__field">
+                <span class="form__field__text">БИК</span>
+                <input class="input-text input-bik" type="text">
+              </label>
+              <label class="form__field">
+                <span class="form__field__text">Номер счёта</span>
+                <input class="input-text input-account" type="text">
+              </label>
+              <label class="form__field">
+                <span class="form__field__text">Назначение платежа</span>
+                <input class="input-text input-purpose" type="text">
+              </label>
+              <span class="form__field">
+                <span class="form__field__text">НДС</span>
+                <span class="switch">
+                  <label for="nds-18" class="button white-button nds-18">НДС 18%</label>
+                  <label for="nds-10" class="button white-button nds-10">НДС 10%</label>
+                  <label for="nds-0" class="button white-button nds-0">Без НДС</label>
+                </span>
+              </span>
+              <label class="form__field">
+                <span class="form__field__text">Сумма платежа</span>
+                <input class="input-text input-sum" type="text">
+                <span>руб.</span>
+              </label>
+              <label class="form__field">
+                <span class="form__field__text">Номер телефона</span>
+                <input class="input-text input-tel" type="tel" placeholder="+7 (000) 000-00-00">
+              </label>
               <span class="capture">Оставляя номер телефона, вы соглашаетесь на </span>
-              <a class="capture" href="#">обработку персональных данных</a>
-              <div class="margin">
-                <label>
-                  <span class="form-label em12">Электронная почта</span>
-                  <input class="form-input" type="text" placeholder="Для уведомлений об уплате">
-                </label>
-              </div>
+              <a class="capture link" href="#">обработку персональных данных</a>
+              <label class="form__field">
+                <span class="form__field__text">Электронная почта</span>
+                <input class="input-text input-email" type="text" placeholder="Для уведомлений об уплате">
+              </label>
             </div>
-            <div class="margin">
+            <div class="box__block">
               <input class="button accent-button" type="button" value="Запросить платёж">
               <input class="button white-button" type="button" value="Очистить форму">
             </div>
           </form>
         </div>
-        <div class="about secondary top-shadow">
-          <h2>Информация о компании</h2>
+        <div class="box__container bg-gray">
+          <h2 class="heading">Информация о компании</h2>
+          <div class="items">
+            <div class="item">
+              <img class="item__logo" src="img/focus.svg" alt="logo" title="logo">
+              <span class="title">Фокус</span>
+            </div>
+            <div class="item">
+              <img class="item__logo" src="img/elba.svg" alt="logo" title="logo">
+              <span class="title">Эльба</span>
+            </div>
+            <div class="item">
+              <img class="item__logo" src="img/extern.svg" alt="logo" title="logo">
+              <span class="title">Экстерн</span>
+            </div>
+            <div class="item">
+              <img class="item__logo" src="img/otchet.svg" alt="logo" title="logo">
+              <span class="title">Отчет.ру</span>
+            </div>
+          </div>
+          <p>
+            СКБ Контур — один из первых разработчиков программного обеспечения в России.
+          </p>
+          <p>
+              С 1988 года компания помогает руководителям и бухгалтерам легче взаимодействовать с государством и контрагентами, упрощать внутренние процессы и быстрее справляться с ежедневными задачами.</p>
         </div>
       </div>
+      <footer class="footer">
+        <a class="contact link" href="https://vk.com/creewick">ВКонтакте</a>
+        <a class="contact link" href="https://t.me/creewick">Телеграм</a>
+        <a class="contact link" href="https://github.com/creewick">GitHub</a>
+        <a class="contact link" href="https://creewick.github.io">Сайт</a>
+      </footer>
     </main>
   </body>
 </html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>extern-32</title>
+    <desc>Created with Sketch.</desc>
+    <defs/>
+    <g id="extern" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="extern-32">
+            <g>
+                <path d="M27,0 L32,0 L32,5 L32,27 C32,29.7625407 29.7614237,32 27,32 L5,32 C2.23745928,32 0,29.7614237 0,27 L0,5 C0,2.23745928 2.23857625,0 5,0 L27,0 Z" id="P32" fill="#FF8000"/>
+                <path d="M10.205433,23.077554 C11.4452776,23.8371545 12.90037,24.2745159 14.4566613,24.2745159 C18.9882287,24.2745159 22.6617895,20.5663804 22.6617895,15.992163 C22.6617895,11.4179455 18.9882287,7.70981003 14.4566613,7.70981003 C12.8814276,7.70981003 11.4098712,8.15788294 10.1602564,8.93465142 M11.232472,15.306685 L14.2422877,17.5708854 L18.3047877,13.2002052" id="Extern" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+        </g>
+        <g id="Icon-Guides" transform="translate(-270.000000, -50.000000)"/>
+    </g>
+</svg>
