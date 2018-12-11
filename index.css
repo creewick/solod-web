@@ -188,6 +188,12 @@
     border: 2px solid #F69C00;
 }
 
+.input-text:invalid {
+    margin: 0;
+    border: 2px solid #EE1722;
+    background-color: #FFD7D7;
+}
+
 .input-date,
 .input-code {
     min-width: auto;

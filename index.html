@@ -5,6 +5,7 @@
     <title>Тех. задание курс Веб и DHTML</title>
     <link rel="stylesheet" href="./index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   </head>
   <body>
     <header class="header box">
@@ -14,7 +15,7 @@
       <div class="box__block">
         <span class="title">Управление платежами</span>
       </div>
-      <div class="box page__top-line">
+      <div id="app" class="box page__top-line">
         <input class="trigger trigger__action-pay" type="radio" name="action" id="pay" checked>
         <input class="trigger trigger__action-request" type="radio" name="action" id="request">
         <div class="box__container box__first-container bg-gray">
@@ -61,14 +62,18 @@
           <div class="box__payment-any">
             <form class="box__card-form box__block">
               <div class="box__form__card">
-                <input class="input-text" type="text" placeholder="Номер карты">
-                <input class="input-text input-date" type="text" placeholder="ММ/ГГ">
-                <input class="input-text input-code" type="password" placeholder="CVC">
+                <input v-on:input="change($event, (x) => x.digits(16).cardFormat())" v-on:blur="verify($event, /^\d{4}( \d{4}){3}$/)"
+                       class="input-text" type="text" placeholder="Номер карты">
+                <input v-on:input="change($event, (x) => x.digits(4).dateFormat())" v-on:blur="verify($event, /^(0\d|1[0-2])\/\d{2}$/)"
+                       class="input-text input-date" type="text" placeholder="ММ/ГГ">
+                <input v-on:input="change($event, (x) => x.digits(3))" v-on:blur="verify($event, /^\d{3}$/)"
+                       class="input-text input-code" type="password" placeholder="CVC">
               </div>
               <div class="box__form__fields">
                 <label class="form__field">
                   <span class="card-form__field__text">Сумма платежа</span>
-                  <input class="input-text input-sum" type="text">
+                  <input v-on:input="change($event, (x) => x.digits(5))" v-on:blur="verify($event, /^(\d{4}|[0-6]\d{4}|7[0-4]\d{3}|75000)$/)"
+                         class="input-text input-sum" type="text" placeholder="10 000 &ndash; 75 000">
                   <span>руб.</span>
                 </label>
                 <label class="form__field">
@@ -77,7 +82,7 @@
                 </label>
                 <label class="form__field">
                   <span class="card-form__field__text">Электронная почта</span>
-                  <input class="input-text card-form__input-email" type="text" placeholder="Для квитанций об уплате">
+                  <input class="input-text card-form__input-email" type="email" placeholder="Для квитанций об уплате">
                 </label>
                 <input class="button accent-button" type="button" value="Заплатить">
               </div>
@@ -113,7 +118,8 @@
                 </span>
                 <label class="form__field">
                   <span class="form__field__text">Сумма платежа</span>
-                  <input class="input-text input-sum" type="text">
+                  <input v-on:input="change($event, (x) => x.digits(5))" v-on:blur="verify($event, /^(\d{4}|[0-6]\d{4}|7[0-4]\d{3}|75000)$/)"
+                         class="input-text input-sum" type="text" placeholder="10 000 &ndash; 75 000">
                   <span>руб.</span>
                 </label>
               </div>
@@ -201,6 +207,7 @@
               С 1988 года компания помогает руководителям и бухгалтерам легче взаимодействовать с государством и контрагентами, упрощать внутренние процессы и быстрее справляться с ежедневными задачами.</p>
         </div>
       </div>
+      <script src="index.js"></script>
       <footer class="footer">
         <a class="contact link" href="https://vk.com/creewick">ВКонтакте</a>
         <a class="contact link" href="https://t.me/creewick">Телеграм</a>
