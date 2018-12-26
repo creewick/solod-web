@@ -5,184 +5,288 @@
     <title>Тех. задание курс Веб и DHTML</title>
     <link rel="stylesheet" href="./index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   </head>
   <body>
     <header class="header box">
-      <h2 class="heading">контур.экстерн</h2>
+      <h1 class="heading accent-color no-margin">контур.экстерн</h1>
     </header>
     <main class="page">
-      <div class="box__block">
-        <span class="title">Управление платежами</span>
+      <div class="vertical-margin">
+        <span class="title no-margin">Управление платежами</span>
       </div>
-      <div id="app" class="box page__top-line">
-        <input class="trigger trigger__action-pay" type="radio" name="action" id="pay" checked>
-        <input class="trigger trigger__action-request" type="radio" name="action" id="request">
-        <div class="box__container box__first-container bg-gray">
-          <div class="box__client-info">
-            <div class="box__client-info__contacts">
-              <h2 class="heading">ИП Иванов Иван Иванович</h2>
-              <div class="contacts__line box__block">
+      <div id="app" class="box top-line">
+        <input class="trigger trigger--action-pay" type="radio" name="action" id="pay" checked>
+        <input class="trigger trigger--action-request" type="radio" name="action" id="request">
+        <div class="box__block box__block--gray">
+          <div class="flex flex-wrap flex-center">
+            <div class="flex__column flex-max">
+              <h2 class="heading no-margin">ИП Иванов Иван Иванович</h2>
+              <div class="flex flex-wrap vertical-margin">
                 <p class="contact">+78005553535</p>
                 <a class="contact link" href="#">www.ivan.ivanov.ru</a>
                 <a class="contact link" href="#">i.ivanov@kontur.ru</a>
               </div>
-              <div class="box__client-info__info">
+              <div class="contacts__info vertical-margin">
                 <a class="link" href="#">Информация о компании</a>
               </div>
-              <div class="box__client-info__requisites box__block">
-                <input class="button white-button" type="button" value="Показать реквизиты">
+              <div class="contacts__bank vertical-margin">
+                <input class="button button--white" type="button" value="Показать реквизиты">
               </div>
             </div>
-            <img class="box__client-info__user-icon" src="img/user.svg" title="UserIcon" alt="UserIcon">
+            <div class="flex__column">
+              <img class="user-icon" src="img/user.svg" title="UserIcon" alt="UserIcon">
+            </div>
           </div>
-          <div class="box__bottom-tabs">
-            <label class="action-pay box__tab" for="pay">
+          <div class="block__bottom-tabs flex">
+            <label class="tab tab--action-pay" for="pay">
               <span class="title">Заплатить</span>
             </label>
-            <label class="action-request box__tab" for="request">
+            <label class="tab tab--action-request" for="request">
               <span class="title">Запросить&nbsp;платёж</span>
             </label>
           </div>
         </div>
-        <input class="trigger trigger__nds-18" type="radio" name="nds" id="nds-18">
-        <input class="trigger trigger__nds-10" type="radio" name="nds" id="nds-10">
-        <input class="trigger trigger__nds-0" type="radio" name="nds" id="nds-0" checked>
-        <div class="box__container box__action-pay">
-          <input class="trigger trigger__payment-any" type="radio" name="payment" id="any" checked>
-          <input class="trigger trigger__payment-own" type="radio" name="payment" id="own">
-          <div class="box__tabs">
-            <label class="payment-any box__tab" for="any">
-              <span class="title">С&nbsp;карты любого банка</span>
-            </label>
-            <label class="payment-own box__tab" for="own">
-              <span class="title">Из&nbsp;своего интернет&#8209;банка</span>
-            </label>
+        <input class="trigger trigger--nds-18" type="radio" name="nds" id="nds-18">
+        <input class="trigger trigger--nds-10" type="radio" name="nds" id="nds-10">
+        <input class="trigger trigger--nds-0" type="radio" name="nds" id="nds-0" checked>
+        <div class="box__block box__block--white">
+          <div class="tab-content tab-content--action-pay hide">
+            <input class="trigger trigger--payment-any" type="radio" name="payment" id="any" checked>
+            <input class="trigger trigger--payment-own" type="radio" name="payment" id="own">
+            <div class="block__tabs flex">
+              <label class="tab tab--payment-any" for="any">
+                <span class="title">С&nbsp;карты любого банка</span>
+              </label>
+              <label class="tab tab--payment-own" for="own">
+                <span class="title">Из&nbsp;своего интернет&#8209;банка</span>
+              </label>
+            </div>
+            <div class="tab-content tab-content--payment-any hide">
+              <form class="form card-form flex vertical-margin">
+                <div class="card-form__card">
+                  <verify-input
+                    :regex="/^\d{4}( \d{4}){3}$/"
+                    :format="x => x.digits(16).cardFormat()"
+                    placeholder="Номер карты"
+                    key="card-number"
+                    formId="payment-any"
+                    :classes="['input--17', 'input--center']">
+                  </verify-input><br>
+                  <verify-input
+                    :regex="/^(0\d|1[0-2])\/(1[7-9]|2\d|3[0-5])$/"
+                    :format="x => x.digits(4).dateFormat()"
+                    placeholder="ММ/ГГ"
+                    key="card-date"
+                    formId="payment-any"
+                    classes="input--3">
+                  </verify-input>
+                  <verify-input
+                    :regex="/^\d{3}$/"
+                    :format="x => x.digits(3)"
+                    placeholder="CVC"
+                    key="card-cvc"
+                    formId="payment-any"
+                    classes="input--3">
+                  </verify-input>
+                </div>
+                <div class="flex-max">
+                  <label class="field">
+                    <span class="field__label">Сумма платежа</span>
+                    <verify-input
+                      :regex="/^(\d{4}|[0-6]\d{4}|7[0-4]\d{3}|75000)$/"
+                      :format="x => x.digits(5)"
+                      placeholder="10 К &ndash; 75 К"
+                      key="sum"
+                      formId="payment-any"
+                      classes="input--5">
+                    </verify-input>
+                    <span>руб.</span>
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Комментарий</span>
+                    <verify-input
+                      :regex="/.*/"
+                      :format="x => x.substr(0, 150)"
+                      placeholder="До 150 символов"
+                      key="comment"
+                      formId="payment-any"
+                      classes="input--full">
+                    </verify-input>
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Электронная почта</span>
+                    <verify-input
+                      :regex="/.+@.+\..+/"
+                      key="email"
+                      formId="payment-any"
+                      placeholder="Для квитанций об уплате"
+                      classes="input--full">
+                    </verify-input>
+                  </label>
+                  <form-submit
+                    :keys="['card-number', 'card-date', 'card-cvc', 'sum', 'comment', 'email']"
+                    formId="payment-any"
+                    value="Заплатить"
+                  >
+                  </form-submit>
+                  <input class="button button--white" type="button" value="Очистить форму">
+                </div>
+              </form>
+            </div>
+            <div class="tab-content tab-content--payment-own hide">
+              <p>Сформируйте платёжку и загрузите её в свой банк для подписи</p>
+              <form class="form">
+                <div class="flex-max">
+                  <label class="field">
+                    <span class="field__label">ИНН плательщика</span>
+                    <verify-input
+                      :regex="/.+/"
+                      placeholder="ИНН или название плательщика"
+                      classes="input--full"
+                    ></verify-input>
+                  </label>
+                  <label class="field">
+                    <span class="field__label">БИК</span>
+                    <verify-input
+                      :regex="/^\d{9}$/"
+                      :format="x => x.digits(9)"
+                      placeholder="Банковский Идентификационный Код"
+                      classes="input--full"
+                    ></verify-input>
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Номер счёта</span>
+                    <verify-input
+                      :regex="/^\d{20}$/"
+                      :format="x => x.digits(20)"
+                      classes="input--full"
+                    ></verify-input>
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Назначение платежа</span>
+                    <verify-input
+                      :regex="/.*/"
+                      classes="input--full"
+                    ></verify-input>
+                  </label>
+                  <span class="field">
+                    <span class="field__label">НДС</span>
+                    <span class="switch">
+                      <label for="nds-18" class="button button--white nds-18">НДС 18%</label>
+                      <label for="nds-10" class="button button--white nds-10">НДС 10%</label>
+                      <label for="nds-0" class="button button--white nds-0">Без НДС</label>
+                    </span>
+                  </span>
+                  <label class="field">
+                    <span class="field__label">Сумма платежа</span>
+                    <verify-input
+                      :regex="/^([0-6]\d{4}|7[0-4]\d{3}|75000)$/"
+                      :format="x => x.digits(5)"
+                      placeholder="10 К &ndash; 75 К"
+                      classes="input--5"
+                    ></verify-input>
+                    <span>руб.</span>
+                  </label>
+                </div>
+                <div class="padding">
+                  <form-submit
+                    value="Получить файл для интернет-банка"
+                  >
+                  </form-submit>
+                  <input class="button button--white" type="button" value="Очистить форму">
+                </div>
+              </form>
+            </div>
           </div>
-          <div class="box__payment-any">
-            <form class="box__card-form box__block">
-              <div class="box__form__card">
-                <input v-on:input="change($event, (x) => x.digits(16).cardFormat())" v-on:blur="verify($event, /^\d{4}( \d{4}){3}$/)"
-                       class="input-text" type="text" placeholder="Номер карты">
-                <input v-on:input="change($event, (x) => x.digits(4).dateFormat())" v-on:blur="verify($event, /^(0\d|1[0-2])\/\d{2}$/)"
-                       class="input-text input-date" type="text" placeholder="ММ/ГГ">
-                <input v-on:input="change($event, (x) => x.digits(3))" v-on:blur="verify($event, /^\d{3}$/)"
-                       class="input-text input-code" type="password" placeholder="CVC">
-              </div>
-              <div class="box__form__fields">
-                <label class="form__field">
-                  <span class="card-form__field__text">Сумма платежа</span>
-                  <input v-on:input="change($event, (x) => x.digits(5))" v-on:blur="verify($event, /^(\d{4}|[0-6]\d{4}|7[0-4]\d{3}|75000)$/)"
-                         class="input-text input-sum" type="text" placeholder="10 000 &ndash; 75 000">
-                  <span>руб.</span>
+          <div class="tab-content tab-content--action-request hide">
+            <p class="no-margin vertical-margin">Создайте платёжку, а ИП Иванов Иван Иванович подпишет её у себя в интернет-банке</p>
+            <form class="form">
+              <div class="flex-max">
+                <label class="field">
+                  <span class="field__label">ИНН получателя</span>
+                  <verify-input
+                    :regex="/^.+$/"
+                    :format="x => x"
+                    placeholder="ИНН или название получателя"
+                    classes="input--full"
+                  ></verify-input>
                 </label>
-                <label class="form__field">
-                  <span class="card-form__field__text">Комментарий</span>
-                  <input class="input-text card-form__input-comment" type="text" placeholder="До 150 символов">
+                <label class="field">
+                  <span class="field__label">БИК</span>
+                  <verify-input
+                    :regex="/^\d{9}$/"
+                    :format="x => x.digits(9)"
+                    placeholder="Банковский Идентификационный Код"
+                    classes="input--full"
+                  ></verify-input>
                 </label>
-                <label class="form__field">
-                  <span class="card-form__field__text">Электронная почта</span>
-                  <input class="input-text card-form__input-email" type="email" placeholder="Для квитанций об уплате">
+                <label class="field">
+                  <span class="field__label">Номер счёта</span>
+                  <verify-input
+                    :regex="/^\d{20}$/"
+                    :format="x => x.digits(20)"
+                    classes="input--full"
+                  ></verify-input>
                 </label>
-                <input class="button accent-button" type="button" value="Заплатить">
-              </div>
-            </form>
-          </div>
-          <div class="box__payment-own">
-            <p>Сформируйте платёжку и загрузите её в свой банк для подписи</p>
-            <form class="box__form">
-              <div class="box__form__fields">
-                <label class="form__field">
-                  <span class="form__field__text">ИНН плательщика</span>
-                  <input class="input-text input-inn" type="text" placeholder="ИНН или название плательщика">
+                <label class="field">
+                  <span class="field__label">Назначение платежа</span>
+                  <verify-input
+                    :regex="/.*/"
+                    classes="input--full"
+                  ></verify-input>
                 </label>
-                <label class="form__field">
-                  <span class="form__field__text">БИК</span>
-                  <input class="input-text input-bik" type="text">
-                </label>
-                <label class="form__field">
-                  <span class="form__field__text">Номер счёта</span>
-                  <input class="input-text input-account" type="text">
-                </label>
-                <label class="form__field">
-                  <span class="form__field__text">Назначение платежа</span>
-                  <input class="input-text input-purpose" type="text">
-                </label>
-                <span class="form__field">
-                  <span class="form__field__text">НДС</span>
+                <span class="field">
+                  <span class="field__label">НДС</span>
                   <span class="switch">
-                    <label for="nds-18" class="button white-button nds-18">НДС 18%</label>
-                    <label for="nds-10" class="button white-button nds-10">НДС 10%</label>
-                    <label for="nds-0" class="button white-button nds-0">Без НДС</label>
+                    <label for="nds-18" class="button button--white nds-18">НДС 18%</label>
+                    <label for="nds-10" class="button button--white nds-10">НДС 10%</label>
+                    <label for="nds-0" class="button button--white nds-0">Без НДС</label>
                   </span>
                 </span>
-                <label class="form__field">
-                  <span class="form__field__text">Сумма платежа</span>
-                  <input v-on:input="change($event, (x) => x.digits(5))" v-on:blur="verify($event, /^(\d{4}|[0-6]\d{4}|7[0-4]\d{3}|75000)$/)"
-                         class="input-text input-sum" type="text" placeholder="10 000 &ndash; 75 000">
+                <label class="field">
+                  <span class="field__label">Сумма платежа</span>
+                  <verify-input
+                    :regex="/^([0-6]\d{4}|7[0-4]\d{3}|75000)$/"
+                    :format="x => x.digits(5)"
+                    placeholder="10 К &ndash; 75 К"
+                    classes="input--5"
+                  ></verify-input>
                   <span>руб.</span>
                 </label>
+                <label class="field">
+                  <span class="field__label">Номер телефона</span>
+                  <verify-input
+                    :regex="/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/"
+                    :format="x => x.digits(11).phoneFormat()"
+                    placeholder="+7 (___) ___-__-__"
+                    classes="input--9"
+                  ></verify-input>
+                </label>
+                <span class="capture">Оставляя номер телефона, вы соглашаетесь на </span>
+                <a class="capture link" href="#">обработку персональных данных</a>
+                <label class="field">
+                  <span class="field__label">Электронная почта</span>
+                  <verify-input
+                    :regex="/.+@.+\..+/"
+                    placeholder="Для квитанций об уплате"
+                    classes="input--full">
+                  </verify-input>
+                </label>
               </div>
-              <div class="box__block">
-                <input class="button accent-button" type="button" value="Получить файл для интернет-банка">
-                <input class="button white-button" type="button" value="Очистить форму">
+              <div class="padding">
+                <form-submit
+                  value="Запросить платёж"
+                >
+                <input class="button button--white" type="button" value="Очистить форму">
               </div>
             </form>
           </div>
         </div>
-        <div class="box__container box__action-request">
-          <p>Создайте платёжку, а ИП Иванов Иван Иванович подпишет её у себя в интернет-банке</p>
-          <form class="box__form">
-            <div class="box__form__fields">
-              <label class="form__field">
-                <span class="form__field__text">ИНН получателя</span>
-                <input class="input-text input-inn" type="text" placeholder="ИНН или название получателя">
-              </label>
-              <label class="form__field">
-                <span class="form__field__text">БИК</span>
-                <input class="input-text input-bik" type="text">
-              </label>
-              <label class="form__field">
-                <span class="form__field__text">Номер счёта</span>
-                <input class="input-text input-account" type="text">
-              </label>
-              <label class="form__field">
-                <span class="form__field__text">Назначение платежа</span>
-                <input class="input-text input-purpose" type="text">
-              </label>
-              <span class="form__field">
-                <span class="form__field__text">НДС</span>
-                <span class="switch">
-                  <label for="nds-18" class="button white-button nds-18">НДС 18%</label>
-                  <label for="nds-10" class="button white-button nds-10">НДС 10%</label>
-                  <label for="nds-0" class="button white-button nds-0">Без НДС</label>
-                </span>
-              </span>
-              <label class="form__field">
-                <span class="form__field__text">Сумма платежа</span>
-                <input class="input-text input-sum" type="text">
-                <span>руб.</span>
-              </label>
-              <label class="form__field">
-                <span class="form__field__text">Номер телефона</span>
-                <input class="input-text input-tel" type="tel" placeholder="+7 (000) 000-00-00">
-              </label>
-              <span class="capture">Оставляя номер телефона, вы соглашаетесь на </span>
-              <a class="capture link" href="#">обработку персональных данных</a>
-              <label class="form__field">
-                <span class="form__field__text">Электронная почта</span>
-                <input class="input-text input-email" type="text" placeholder="Для уведомлений об уплате">
-              </label>
-            </div>
-            <div class="box__block">
-              <input class="button accent-button" type="button" value="Запросить платёж">
-              <input class="button white-button" type="button" value="Очистить форму">
-            </div>
-          </form>
-        </div>
-        <div class="box__container bg-gray">
-          <h2 class="heading">Информация о компании</h2>
-          <div class="items">
+        <div class="box__block box__block--gray">
+          <h2 class="heading no-margin">Информация о компании</h2>
+          <div class="items flex flex-wrap">
             <div class="item">
               <img class="item__logo" src="img/focus.svg" alt="logo" title="logo">
               <span class="title">Фокус</span>
@@ -204,9 +308,27 @@
             СКБ Контур — один из первых разработчиков программного обеспечения в России.
           </p>
           <p>
-              С 1988 года компания помогает руководителям и бухгалтерам легче взаимодействовать с государством и контрагентами, упрощать внутренние процессы и быстрее справляться с ежедневными задачами.</p>
+            С 1988 года компания помогает руководителям и бухгалтерам легче взаимодействовать с государством и контрагентами, упрощать внутренние процессы и быстрее справляться с ежедневными задачами.
+          </p>
         </div>
       </div>
+      <template id="verify-input">
+        <input 
+          v-on:input="this.change" 
+          v-on:blur="this.verify"
+          :class="['input', this.classes]" 
+          :placeholder="this.placeholder"
+          type="text"
+        />
+      </template>
+      <template id="form-submit">
+        <input 
+          class="button button--accent"
+          v-on:click="this.submit"
+          :value="this.value"
+          type="submit"
+        />
+      </template>
       <script src="index.js"></script>
       <footer class="footer">
         <a class="contact link" href="https://vk.com/creewick">ВКонтакте</a>
