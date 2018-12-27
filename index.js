@@ -91,17 +91,23 @@ var app = new Vue({
             }
             return true;
         },
-        
-        send(type, event) {
-            fetch(`http://solod-web.azurewebsites.net/api/values/${type}`, {
+
+        send(event) {
+
+            fetch('http://solod-web.azurewebsites.net/api/values/paymentAny', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(this[type])
+                body: JSON.stringify({
+                    cardNumber: this.paymentAny.cardNumber.value,
+                    cardDate: this.paymentAny.cardDate.value,
+                    cardCvc: this.paymentAny.cardCvc.value,
+                    sum: this.paymentAny.sum.value,
+                    comment: this.paymentAny.comment.value,
+                    email: this.paymentAny.email.value
+                })
             });
-
-            event.preventDefault();
         }
     }
 })
