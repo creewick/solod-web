@@ -64,113 +64,96 @@
               </label>
             </div>
             <div class="tab-content tab-content--payment-any hide">
-              <form class="form card-form flex vertical-margin">
+              <form class="form card-form flex vertical-margin" v-on:submit="send('paymentAny', $event)">
                 <div class="card-form__card">
-                  <verify-input
-                    :regex="/^\d{4}( \d{4}){3}$/"
+                  <field
+                    v-model="paymentAny.cardNumber"
+                    field-classes="field--inline"
+                    :classes="['input--17', 'input--center']"
                     :format="x => x.digits(16).cardFormat()"
+                    :regex="/^\d{4}( \d{4}){3}$/"
                     placeholder="Номер карты"
-                    key="card-number"
-                    formId="payment-any"
-                    :classes="['input--17', 'input--center']">
-                  </verify-input><br>
-                  <verify-input
+                  >
+                  </field>
+                  <field
+                    v-model="paymentAny.cardDate"
+                    field-classes="field--inline"
                     :regex="/^(0\d|1[0-2])\/(1[7-9]|2\d|3[0-5])$/"
                     :format="x => x.digits(4).dateFormat()"
                     placeholder="ММ/ГГ"
-                    key="card-date"
-                    formId="payment-any"
-                    classes="input--3">
-                  </verify-input>
-                  <verify-input
-                    :regex="/^\d{3}$/"
+                    classes="input--3"
+                  ></field>
+                  <field
+                    v-model="paymentAny.cardCvc"
+                    field-classes="field--inline"
                     :format="x => x.digits(3)"
+                    :regex="/^\d{3}$/"
                     placeholder="CVC"
-                    key="card-cvc"
-                    formId="payment-any"
-                    classes="input--3">
-                  </verify-input>
+                    classes="input--3"
+                  ></field>
                 </div>
                 <div class="flex-max">
-                  <label class="field">
-                    <span class="field__label">Сумма платежа</span>
-                    <verify-input
-                      :regex="/^(\d{4}|[0-6]\d{4}|7[0-4]\d{3}|75000)$/"
-                      :format="x => x.digits(5)"
-                      placeholder="10 К &ndash; 75 К"
-                      key="sum"
-                      formId="payment-any"
-                      classes="input--5">
-                    </verify-input>
-                    <span>руб.</span>
-                  </label>
-                  <label class="field">
-                    <span class="field__label">Комментарий</span>
-                    <verify-input
-                      :regex="/.*/"
-                      :format="x => x.substr(0, 150)"
-                      placeholder="До 150 символов"
-                      key="comment"
-                      formId="payment-any"
-                      classes="input--full">
-                    </verify-input>
-                  </label>
-                  <label class="field">
-                    <span class="field__label">Электронная почта</span>
-                    <verify-input
-                      :regex="/.+@.+\..+/"
-                      key="email"
-                      formId="payment-any"
-                      placeholder="Для квитанций об уплате"
-                      classes="input--full">
-                    </verify-input>
-                  </label>
-                  <form-submit
-                    :keys="['card-number', 'card-date', 'card-cvc', 'sum', 'comment', 'email']"
-                    formId="payment-any"
-                    value="Заплатить"
-                  >
-                  </form-submit>
+                  <field
+                    v-model="paymentAny.sum"
+                    :regex="/^(\d{4}|[0-6]\d{4}|7[0-4]\d{3}|75000)$/"
+                    :format="x => x.digits(5)"
+                    placeholder="10 К &ndash; 75 К"
+                    classes="input--5"
+                    label="Сумма платежа"
+                    after="руб."
+                  ></field>
+                  <field
+                    v-model="paymentAny.comment"
+                    :regex="/.*/"
+                    :format="x => x.substr(0, 150)"
+                    placeholder="До 150 символов"
+                    classes="input--full"
+                    label="Комментарий"
+                  ></field>
+                  <field
+                    v-model="paymentAny.email"
+                    :regex="/.+@.+\..+/"
+                    placeholder="Для квитанций об уплате"
+                    classes="input--full"
+                    label="Электронная почта"
+                  ></field>
+                  <input class="button button--accent" type="submit" :disabled="!paymentAnyIsValid" value="Заплатить">
                   <input class="button button--white" type="button" value="Очистить форму">
                 </div>
               </form>
             </div>
             <div class="tab-content tab-content--payment-own hide">
               <p>Сформируйте платёжку и загрузите её в свой банк для подписи</p>
-              <form class="form">
+              <form class="form"  v-on:submit="send('paymentOwn', paymentOwn)">
                 <div class="flex-max">
-                  <label class="field">
-                    <span class="field__label">ИНН плательщика</span>
-                    <verify-input
-                      :regex="/.+/"
-                      placeholder="ИНН или название плательщика"
-                      classes="input--full"
-                    ></verify-input>
-                  </label>
-                  <label class="field">
-                    <span class="field__label">БИК</span>
-                    <verify-input
-                      :regex="/^\d{9}$/"
-                      :format="x => x.digits(9)"
-                      placeholder="Банковский Идентификационный Код"
-                      classes="input--full"
-                    ></verify-input>
-                  </label>
-                  <label class="field">
-                    <span class="field__label">Номер счёта</span>
-                    <verify-input
-                      :regex="/^\d{20}$/"
-                      :format="x => x.digits(20)"
-                      classes="input--full"
-                    ></verify-input>
-                  </label>
-                  <label class="field">
-                    <span class="field__label">Назначение платежа</span>
-                    <verify-input
-                      :regex="/.*/"
-                      classes="input--full"
-                    ></verify-input>
-                  </label>
+                  <field
+                    v-model="paymentOwn.inn"
+                    :regex="/.+/"
+                    placeholder="ИНН или название плательщика"
+                    classes="input--full"
+                    label="ИНН плательщика"
+                  ></field>
+                  <field
+                    v-model="paymentOwn.bik"
+                    :regex="/^\d{9}$/"
+                    :format="x => x.digits(9)"
+                    placeholder="Банковский Идентификационный Код"
+                    classes="input--full"
+                    label="БИК"
+                  ></field>
+                  <field
+                    v-model="paymentOwn.bankNumber"
+                    :regex="/^\d{20}$/"
+                    :format="x => x.digits(20)"
+                    classes="input--full"
+                    label="Номер счёта"
+                  ></field>
+                  <field
+                    v-model="paymentOwn.purpose"
+                    :regex="/.*/"
+                    classes="input--full"
+                    label="Назначение платежа"
+                  ></field>
                   <span class="field">
                     <span class="field__label">НДС</span>
                     <span class="switch">
@@ -179,22 +162,18 @@
                       <label for="nds-0" class="button button--white nds-0">Без НДС</label>
                     </span>
                   </span>
-                  <label class="field">
-                    <span class="field__label">Сумма платежа</span>
-                    <verify-input
-                      :regex="/^([0-6]\d{4}|7[0-4]\d{3}|75000)$/"
-                      :format="x => x.digits(5)"
-                      placeholder="10 К &ndash; 75 К"
-                      classes="input--5"
-                    ></verify-input>
-                    <span>руб.</span>
-                  </label>
+                  <field
+                    v-model="paymentOwn.sum"
+                    :regex="/^([0-6]\d{4}|7[0-4]\d{3}|75000)$/"
+                    :format="x => x.digits(5)"
+                    placeholder="10 К &ndash; 75 К"
+                    classes="input--5"
+                    label="Сумма платежа"
+                    after="руб."
+                  ></field>
                 </div>
                 <div class="padding">
-                  <form-submit
-                    value="Получить файл для интернет-банка"
-                  >
-                  </form-submit>
+                  <input class="button button--accent" type="submit" :disabled="!paymentOwnIsValid" value="Получить файл для интернет-банка">
                   <input class="button button--white" type="button" value="Очистить форму">
                 </div>
               </form>
@@ -202,41 +181,36 @@
           </div>
           <div class="tab-content tab-content--action-request hide">
             <p class="no-margin vertical-margin">Создайте платёжку, а ИП Иванов Иван Иванович подпишет её у себя в интернет-банке</p>
-            <form class="form">
+            <form class="form"  v-on:submit="send('request', request)">
               <div class="flex-max">
-                <label class="field">
-                  <span class="field__label">ИНН получателя</span>
-                  <verify-input
-                    :regex="/^.+$/"
-                    :format="x => x"
-                    placeholder="ИНН или название получателя"
-                    classes="input--full"
-                  ></verify-input>
-                </label>
-                <label class="field">
-                  <span class="field__label">БИК</span>
-                  <verify-input
-                    :regex="/^\d{9}$/"
-                    :format="x => x.digits(9)"
-                    placeholder="Банковский Идентификационный Код"
-                    classes="input--full"
-                  ></verify-input>
-                </label>
-                <label class="field">
-                  <span class="field__label">Номер счёта</span>
-                  <verify-input
-                    :regex="/^\d{20}$/"
-                    :format="x => x.digits(20)"
-                    classes="input--full"
-                  ></verify-input>
-                </label>
-                <label class="field">
-                  <span class="field__label">Назначение платежа</span>
-                  <verify-input
-                    :regex="/.*/"
-                    classes="input--full"
-                  ></verify-input>
-                </label>
+                  <field
+                  v-model="request.inn"
+                  :regex="/.+/"
+                  placeholder="ИНН или название получателя"
+                  classes="input--full"
+                  label="ИНН получателя"
+                ></field>
+                <field
+                  v-model="request.bik"
+                  :regex="/^\d{9}$/"
+                  :format="x => x.digits(9)"
+                  placeholder="Банковский Идентификационный Код"
+                  classes="input--full"
+                  label="БИК"
+                ></field>
+                <field
+                  v-model="request.bankNumber"
+                  :regex="/^\d{20}$/"
+                  :format="x => x.digits(20)"
+                  classes="input--full"
+                  label="Номер счёта"
+                ></field>
+                <field
+                  v-model="request.purpose"
+                  :regex="/.*/"
+                  classes="input--full"
+                  label="Назначение платежа"
+                ></field>
                 <span class="field">
                   <span class="field__label">НДС</span>
                   <span class="switch">
@@ -245,40 +219,35 @@
                     <label for="nds-0" class="button button--white nds-0">Без НДС</label>
                   </span>
                 </span>
-                <label class="field">
-                  <span class="field__label">Сумма платежа</span>
-                  <verify-input
-                    :regex="/^([0-6]\d{4}|7[0-4]\d{3}|75000)$/"
-                    :format="x => x.digits(5)"
-                    placeholder="10 К &ndash; 75 К"
-                    classes="input--5"
-                  ></verify-input>
-                  <span>руб.</span>
-                </label>
-                <label class="field">
-                  <span class="field__label">Номер телефона</span>
-                  <verify-input
-                    :regex="/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/"
-                    :format="x => x.digits(11).phoneFormat()"
-                    placeholder="+7 (___) ___-__-__"
-                    classes="input--9"
-                  ></verify-input>
-                </label>
+                <field
+                  v-model="request.sum"
+                  :regex="/^([0-6]\d{4}|7[0-4]\d{3}|75000)$/"
+                  :format="x => x.digits(5)"
+                  placeholder="10 К &ndash; 75 К"
+                  classes="input--5"
+                  label="Сумма платежа"
+                  after="руб."
+                ></field>
+                <field
+                  v-model="request.phoneNumber"
+                  :regex="/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/"
+                  :format="x => x.digits(11).phoneFormat()"
+                  placeholder="+7 (___) ___-__-__"
+                  classes="input--9"
+                  label="Номер телефона"
+                ></field>
                 <span class="capture">Оставляя номер телефона, вы соглашаетесь на </span>
                 <a class="capture link" href="#">обработку персональных данных</a>
-                <label class="field">
-                  <span class="field__label">Электронная почта</span>
-                  <verify-input
-                    :regex="/.+@.+\..+/"
-                    placeholder="Для квитанций об уплате"
-                    classes="input--full">
-                  </verify-input>
-                </label>
+                <field
+                  v-model="request.email"
+                  :regex="/.+@.+\..+/"
+                  placeholder="Для квитанций об уплате"
+                  classes="input--full"
+                  label="Электронная почта"
+                ></field>
               </div>
               <div class="padding">
-                <form-submit
-                  value="Запросить платёж"
-                >
+                <input class="button button--accent" type="submit" :disabled="!requestIsValid" value="Запросить платёж">
                 <input class="button button--white" type="button" value="Очистить форму">
               </div>
             </form>
@@ -312,22 +281,17 @@
           </p>
         </div>
       </div>
-      <template id="verify-input">
-        <input 
-          v-on:input="this.change" 
-          v-on:blur="this.verify"
-          :class="['input', this.classes]" 
-          :placeholder="this.placeholder"
-          type="text"
-        />
-      </template>
-      <template id="form-submit">
-        <input 
-          class="button button--accent"
-          v-on:click="this.submit"
-          :value="this.value"
-          type="submit"
-        />
+      <template id="field">
+        <label :class="['field', this.fieldClasses]">
+          <span v-if="label" class="field__label">{{ label }}</span>
+          <input 
+            :class="['input', this.classes, {invalid: !this.isValid}]"
+            :placeholder="this.placeholder"
+            v-model="content.value"
+            type="text"
+          />
+          <span v-if="after">{{ after }}</span>
+        </label>
       </template>
       <script src="index.js"></script>
       <footer class="footer">

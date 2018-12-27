@@ -240,7 +240,7 @@
     border: 2px solid #F69C00;
 }
 
-.input:invalid {
+.invalid {
     margin: 0;
     border: 2px solid #EE1722;
     background-color: #FFD7D7;
@@ -269,6 +269,10 @@
 
 .input--full {
     width: calc(100% - 13em);
+}
+
+.field--inline {
+    display: inline;
 }
 
 .trigger {

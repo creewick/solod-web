@@ -1,45 +1,41 @@
-Vue.component('verify-input', {
-    template: '#verify-input',
+Vue.component('field', {
+    template: '#field',
     props: {
-        regex: {},
-        placeholder: {},
-        formId: {},
-        key: {},
         format: { default: () => (x => x) },
-        classes: {}
+        fieldClasses: {},
+        placeholder: {},
+        classes: {},
+        regex: {},
+        label: {},
+        after: {},
+        value: {}
     },
-    methods: {
-        verify(event) {
-            if (this.regex.test(event.target.value)) {
-                event.target.setCustomValidity('');
-                this.$parent.onSuccess(this.formId, this.key, event.target.value);
-            } else {
-                event.target.setCustomValidity('Неверно заполнено поле');
-                this.$parent.onError(this.formId, this.key);
+    data() {
+        return {
+            content: {
+                errors: [],
+                value: '',
+                touched: false,
+                valid: false
             }
-        },
-
-        change(event) {
-            event.target.value = this.format(event.target.value);
-            this.verify(event);
+        };
+    },
+    created() {
+        this.$emit('input', this.content);
+    },
+    computed: {
+        isValid() {
+            return this.content.valid || !this.content.touched;
         }
-    }
-})
-
-Vue.component('form-submit', {
-    template: '#form-submit',
-    props: ['keys', 'formId'],
-    methods: {
-        submit(event) {
-            let data = this.$parent.forms[this.formId];
-            let json = JSON.stringify(data);
-            $.ajax({
-                type: 'POST',
-                url: 'https://solod-web.azurewebsites.net/api',
-                data: json
-            });
-
-            event.preventDefault();
+    },
+    watch: {
+        'content.value': {
+            handler(next) {
+                this.content.valid = this.regex.test(next);
+                this.content.value = this.format(next);
+                this.$emit('input', this.content);
+                this.content.touched = true;
+            }
         }
     }
 })
@@ -47,24 +43,68 @@ Vue.component('form-submit', {
 var app = new Vue({
     el: '#app',
     data: {
-        forms: []
+        paymentAny: {
+            cardNumber: {},
+            cardDate: {},
+            cardCvc: {},
+            sum: {},
+            comment: {},
+            email: {}
+        },
+        paymentOwn: {
+            inn: {},
+            bik: {},
+            bankNumber: {},
+            purpose: {},
+            sum: {}
+        },
+        request: {
+            inn: {},
+            bik: {},
+            bankNumber: {},
+            purpose: {},
+            sum: {},
+            phoneNumber: {},
+            email: {}
+        }
+    },
+    computed: {
+        paymentAnyIsValid: {
+            cache: false,
+            get: function() { return this.isFormValid('paymentAny'); }
+        },
+        paymentOwnIsValid: {
+            cache: false,
+            get: function() { return this.isFormValid('paymentOwn'); }
+        },
+        requestIsValid: {
+            cache: false,
+            get: function() { return this.isFormValid('request'); }
+        }
     },
     methods: {
-        onSuccess(formId, key, value) {
-            if (!this.forms[formId]) {
-                this.forms[formId] = {};
+        isFormValid(formKey) {
+            for (const i in this[formKey]) {
+                if (!this[formKey][i] || !this[formKey][i].valid) {
+                    return false;
+                }
             }
-            this.forms[formId][key] = value;
+            return true;
         },
+        
+        send(type, event) {
+            fetch(`http://solod-web.azurewebsites.net/api/values/${type}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this[type])
+            });
 
-        onError(formId, key) {
-            if (this.forms[formId]) {
-                delete this.forms[formId][key];
-            }
+            event.preventDefault();
         }
     }
 })
-
 
 String.prototype.digits = function(limit=99) {
     return this.replace(/\D/g, '').substr(0, limit);
